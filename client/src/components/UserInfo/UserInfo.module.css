@@ -17,6 +17,7 @@
   display: flex;
   align-items: center;
   margin-right: 308px;
+  position: relative;
 }
 
 .userAvatar {
@@ -26,12 +27,22 @@
   margin-right: 15px;
 }
 
+.bubbleWrap {
+  position: absolute;
+  top: 45px;
+  right: 130px;
+}
+
 @media screen and (max-width: 1199px) {
   .userName {
     display: none;
   }
   .userInfoContainer {
     margin-right: 0;
+  }
+  .bubbleWrap {
+    top: 45px;
+    right: 50px;
   }
 }
 
