@@ -16,8 +16,8 @@ function HabitsList() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(habbitOperations.getAllHabits());
-        // console.log('habits', habits);
+       dispatch(habbitOperations.getAllHabits());
+        console.log('habits', habits);
     }, []);
 
     useEffect(() => {
@@ -37,9 +37,9 @@ function HabitsList() {
                         key={el._id}
                         className={styles.HabitItem}
                     >
-                        <MoreButton type={'habit'} data={el }/>
-                        <HabitItem {...el}/>
-                        </li>
+                        <MoreButton type={'habit'} data={el} />
+                        <HabitItem {...el} />
+                    </li>
                 ))}
             </ul> 
             <Button label={'Додати звичку +'} handleClick={() => setShowAddHabitModal(true)} type={'button'} orange={true} />

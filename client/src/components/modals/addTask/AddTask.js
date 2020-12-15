@@ -1,35 +1,26 @@
 import React, { useState } from 'react';
 import styles from './AddTask.module.css';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
-import { createTask } from '../../../redux/tasks/taskActions';
-import { useDispatch } from 'react-redux';
+import operations from '../../../redux/tasks/taskOperations';
+import { useDispatch, useSelector } from 'react-redux';
 
 const AddTask = ({ close }) => {
   const dispatch = useDispatch();
+  const children = useSelector(state => state.children)
+
 
   const [taskName, setTaskName] = useState('');
   const [mark, setMark] = useState('');
   const [taskTarget, setTaskTarget] = useState('');
-  const [taskDays, setTaskDays] = useState('');
+  const [taskDays, setTaskDays] = useState("10");
 
   const handleSubmit = evt => {
-    console.log(
-      'taskName:',
-      taskName,
-      'mark:',
-      mark,
-      'taskTarget',
-      taskTarget,
-      'taskDays',
-      taskDays,
-    );
-
     dispatch(
-      createTask({
+      operations.addTask({
         name: taskName,
         childId: taskTarget,
         points: mark,
-        days: taskDays,
+        daysToComplete: taskDays,
       }),
     );
     evt.preventDefault();
@@ -51,17 +42,20 @@ const AddTask = ({ close }) => {
               ></input>
             </label>
             <label className={styles.label}>
-              <p className={styles.inputName}>Призначення звички</p>
+              <p className={styles.inputName}>Призначення задачі</p>
               <select
+                value={children.childId}
                 className={styles.select}
                 onChange={({ target: { value } }) => setTaskTarget(value)}
                 placeholder="Оберіть дитину"
               >
-                <option disabled>Выберите героя</option>
-                <option value="Чебурашка">Чебурашка</option>
-                <option value="Крокодил Гена">Крокодил Гена</option>
-                <option value="Шапокляк">Шапокляк</option>
-                <option value="Крыса Лариса">Крыса Лариса</option>
+                <option key={children.id}>Оберіть дитину</option>
+                {children &&
+                  children.map(child => (
+                    <option key={child._id} value={child._id}>
+                      {child.name}
+                    </option>
+                  ))}
               </select>
             </label>
             <label className={styles.label}>
@@ -86,7 +80,9 @@ const AddTask = ({ close }) => {
             </label>
           </div>
           <div className={styles.buttonsBlock}>
-            <button className={styles.buttonSave}>Зберегти</button>
+            <button className={styles.buttonSave} onClick={handleSubmit}>
+              Зберегти
+            </button>
 
             <button className={styles.buttonCancle} onClick={() => close()}>
               Відміна

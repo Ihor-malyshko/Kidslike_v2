@@ -7,7 +7,7 @@
 }
 
 .leftSideBarCard {
-  width: 100%;
+  /* width: 100%; */
   border-radius: 20px;
   overflow: hidden;
   background-color: white;
@@ -78,6 +78,9 @@
   margin-bottom: 20px;
   display: flex;
 }
+.habitsList:first-child {
+  margin-top: 20px;
+}
 
 .arrowText {
   font-weight: 500;
@@ -109,23 +112,48 @@
 
 @media screen and (max-width: 1199px) {
   .container {
-    display: none;
+    /* display: none; */
+    /* opacity: 0; */
+    position: absolute;
+    transform: translateX(-150%);
+    transition: transform 500ms ease-in-out;
+    z-index: 1;
+    background-color: #e5e5e5;
+    height: 150%;
   }
   .renderClass {
-    display: block;
+    /* display: block; */
     background-color: #e5e5e5;
     height: 170%;
     z-index: 99;
     position: absolute;
     overflow: hidden;
+    transform: translateX(0%);
+    /* opacity: 1; */
+    transition: transform 500ms ease-in-out;
   }
   .leftSideBarCard {
-    width: 45%;
+    /* width: 45%; */
     margin-right: 10px;
   }
   .cardsContainer {
     /* width: 40%; */
     display: flex;
     flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 767px) {
+  .leftSideBarCard {
+    /* width: 100%; */
+    /* max-width: 337px; */
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .leftSideBarCard {
+    width: 45%;
+    margin-right: 10px;
   }
 }

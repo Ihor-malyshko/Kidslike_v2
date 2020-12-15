@@ -2,12 +2,13 @@ const { Router } = require("express");
 const {
   createHabit,
   getHabits,
-  getHabitById,
   updateHabit,
+  checkHabitDone,
   deleteHabit,
+  // getHabitById
 } = require("./habits.controller");
 const { validate } = require("../helpers/validate");
-const { createHabitSchema, updateHabitSchema } = require("./habits.schemes");
+const { createHabitSchema, updateHabitSchema, checkHabitSchema } = require("./habits.schemes");
 const { asyncWrapper } = require("../helpers/wrapper_Try_Catch");
 const { authorize } = require("../helpers/auth/token_verify");
 const { HabitModel } = require("./habits.model");
@@ -42,7 +43,7 @@ router.post(
 
 // 2. R - Read
 router.get("/", authorize, asyncWrapper(getHabits));
-router.get("/:habitsId", authorize, asyncWrapper(getHabitById));
+// router.get("/:habitsId", authorize, asyncWrapper(getHabitById));
 
 // // 3. U - Update
 router.patch(
@@ -50,6 +51,12 @@ router.patch(
   authorize,
   validate(updateHabitSchema),
   asyncWrapper(updateHabit)
+);
+router.patch(
+  "/:habitsId/check",
+  authorize,
+  validate(checkHabitSchema),
+  asyncWrapper(checkHabitDone)
 );
 
 // 4. D - Delete

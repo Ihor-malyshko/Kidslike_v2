@@ -4,6 +4,7 @@ import HabitsList from '../components/HabitsList/HabitsList';
 import GiftCard from '../components/Gifts/GiftCard';
 import TaskList from '../components/TaskList/TaskList';
 import ChildTaskPage from '../components/ChildTaskPage/ChildTaskPage';
+import GiftsView from './GiftsView';
 
 class TestView extends Component {
   render() {
@@ -15,7 +16,8 @@ class TestView extends Component {
         <ModalTest />
         <TaskList /> */}
         {/* <GiftCard/> */}
-        <ChildTaskPage />
+        {/* <ChildTaskPage /> */}
+        <GiftsView />
       </>
     );
   }

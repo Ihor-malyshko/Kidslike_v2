@@ -55,37 +55,38 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
-    .listItem {
-        width: 160px;
-        height: 44px;
-    }
-    .navLink {
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 14px;
-        letter-spacing: 0em;
-    }
+  .listItem {
+    width: 160px;
+    height: 44px;
+  }
+  .navLink {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: 0em;
+  }
 }
 
 @media screen and (max-width: 767px) {
-    .navList {
-        width: 100%;
-        order: 2;
-    }
-    .navLink>span {
-        display: none;
-    }
-    .listItem {
-        width: 44px;
-        height: 44px;
-    }
-    .listItem.family {
-        width: 44px;
-    }
-    .itemImg {
-        margin-right: 0;
-    }
+  .navList {
+    width: 100%;
+    order: 2;
+  }
+  .familySpan,
+  .navLink > span {
+    display: none;
+  }
+  .listItem {
+    width: 44px;
+    height: 44px;
+  }
+  .listItem.family {
+    width: 44px;
+  }
+  .itemImg {
+    margin-right: 0;
+  }
 }
 
 @media screen and (min-width: 768px) {

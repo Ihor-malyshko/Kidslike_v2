@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 const PublicRoute = ({
-  family,
   component: Component,
   isAuthenticated,
   ...routeProps
@@ -11,7 +10,7 @@ const PublicRoute = ({
       <Route
         {...routeProps}
         render={props =>
-          isAuthenticated ? <Redirect to="/home" /> : <Component {...props} family={family} />
+          isAuthenticated ? <Redirect to="/home" /> : <Component {...props}  />
         }
       />
     </>

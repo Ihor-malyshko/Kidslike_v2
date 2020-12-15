@@ -9,6 +9,7 @@ export const CustomSelect = ({
   handleChange,
   labelText,
   onBlur,
+  options
 }) => {
   
   // {/* не стилизируются options, но если использовать материал или подобное, то не будет по факту самого селекта */}
@@ -27,8 +28,7 @@ export const CustomSelect = ({
           <option value="Оберіть дитину" disabled>
             Оберіть дитину
           </option>
-          <option className={styles.option} value="Маша">Маша</option>
-          <option className={styles.option} value="Поліна">Поліна</option>
+          {options.map(child => <option key={child._id} className={styles.option} value={child._id}>{child.name}</option>)}
         </select>
       </div>
     </div>

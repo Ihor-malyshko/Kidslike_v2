@@ -12,13 +12,14 @@ import {
 } from './childrenActions';
 const port = 'http://localhost:5000/';
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZmQ2Yjc2NDA1NmUyZDM2NmNhZWMxZTUiLCJpYXQiOjE2MDc5MDczMDksImV4cCI6MTYwODA4MDEwOX0.33_nHnSAAnl-cLdwNj8rws3Obrcq3x733s_Fu9caLmA';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZmQ3YTc2YWJiMzczNDBiYjcxYTQxYWEiLCJpYXQiOjE2MDc5NzMyMjksImV4cCI6MTYwODE0NjAyOX0.lKRAeF8D-g1r7HCq-1Ngjm_cTsb7vFzQBjpxQcdm-04';
 axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
 const getAllChildren = () => async dispatch => {
   dispatch(getAllChildrenRequest());
   try {
     const response = await axios.get(`${port}api/childs/`);
+    console.log(response)
     dispatch(getAllChildrenSuccess(response.data));
   } catch (error) {
     dispatch(getAllChildrenError(error));

@@ -3,7 +3,7 @@ import actions from './habbitActions';
 
 const port = 'http://localhost:5000/';
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZmQ2Yjc2NDA1NmUyZDM2NmNhZWMxZTUiLCJpYXQiOjE2MDc5MDczMDksImV4cCI6MTYwODA4MDEwOX0.33_nHnSAAnl-cLdwNj8rws3Obrcq3x733s_Fu9caLmA';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZmQ3YzY0MzA1ZWIyMTUwYjAwMmRjNTYiLCJpYXQiOjE2MDc5Nzg2OTAsImV4cCI6MTYwODE1MTQ5MH0.MjiV-6iBMs-iOALSI7EmAvCaMR_UY5yiKelsSk2gmD4';
 // axios.defaults.baseURL = 'http://kidslike-v2.top/';
 // axios.defaults.baseURL = 'http://localhost:5000/';
 axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
@@ -40,6 +40,17 @@ const updateHabit = (data, id) => async dispatch => {
   }
 };
 
+const checkHabitDone = (id, data) => async dispatch => {
+  dispatch(actions.checkHabbitRequest());
+  try {
+    await axios.patch(`${port}api/habits/${id}/check`, data).then(res => {
+      dispatch(actions.checkHabbitSuccess(res.data));
+    });
+  } catch (error) {
+    dispatch(actions.checkHabbitError(error.message));
+  }
+}
+
 const deleteHabit = id => async dispatch => {
   dispatch(actions.deleteHabbitRequest());
   try {
@@ -55,5 +66,6 @@ export default {
   getAllHabits,
   addHabit,
   updateHabit,
+  checkHabitDone,
   deleteHabit,
 };

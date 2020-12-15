@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './AddPresent.module.css';
 import Button from '../../UIcomponents/Button/Button';
 import { BasicInput } from '../../UIcomponents/Input/BasicInput';
 import { CustomSelect } from '../../UIcomponents/CustomSelect/CustomSelect';
 import modalBackDrop from '../../modalBackDrop/ModalBackDrop';
 import { MarkInput } from '../../UIcomponents/MarkInput/MarkInput';
+import { addGift} from '../../../redux/gifts/giftOperations';
 
 function AddPresent({ close }) {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const children = useSelector(state => state.children)
+
   const [presentTitle, setPresentTitle] = useState('');
-  const [mark, setMark] = useState('');
-  const [childName, setChildName] = useState('Оберіть дитину');
+  const [price, setPrice] = useState('');
+  const [childId, setChildId] = useState('Оберіть дитину');
   const [file, setFile] = useState('');
   const [fileName, setFileName] = useState('');
   const [fileError, setFileError] = useState('');
+
   const fileInput = React.createRef();
 
   const handleTitleChange = event => {
@@ -21,10 +26,10 @@ function AddPresent({ close }) {
   };
 
   const handleNameChange = event => {
-    setChildName(event.target.value);
+    setChildId(event.target.value);
   };
-  const handleMarkChange = event => {
-    setMark(event.target.value);
+  const handlePriceChange = event => {
+    setPrice(event.target.value);
   };
   const handleFileChange = () => {
     const imgFile = fileInput.current.files[0];
@@ -36,27 +41,28 @@ function AddPresent({ close }) {
         return;
       }
       setFileError('');
-      setFileName(imgFile.name)
+      setFileName(imgFile.name);
       reader.readAsDataURL(imgFile);
       reader.onloadend = function () {
         setFile(reader.result);
       };
     }
   };
+
   const resetState = () => {
     setPresentTitle('');
-    setChildName('Оберіть дитину');
-    setMark('');
+    setChildId('Оберіть дитину');
+    setPrice('');
     setFile('');
   };
 
   const handleSubmit = event => {
-    console.log('presentTitle:', presentTitle);
-    console.log('mark:', mark);
-    console.log('childName', childName);
-    console.log('file', file);
+
     event.preventDefault();
-    //dispatch logic
+    //console.log('file', file);
+    // отправка пока идет без файла
+    const newPresent = {name: presentTitle, price, childId }
+    dispatch(addGift(newPresent))
     resetState();
     close();
   };
@@ -78,29 +84,31 @@ function AddPresent({ close }) {
               type="text"
             />
             <CustomSelect
-              id={'childName'}
-              name={'childName'}
+              id={'childId'}
+              name={'childId'}
               labelText={'Призначення подарунку'}
               handleChange={handleNameChange}
-              value={childName}
+              value={childId}
+              options={children}
             />
-            <MarkInput value={mark} onChange={handleMarkChange} /> 
+            <MarkInput value={price} onChange={handlePriceChange} />
             <div>
               <span className={styles.FileInputTitle}>
                 Завантажити фото (необов’язково)
               </span>
               <label htmlFor="file" className={styles.FileInputLabel}>
-                {fileError ? fileError : file ? fileName : "Оберіть файл"}
-              
-              <input
-                type="file"
-                accept="image/*"
-                name="file"
-                id="file"
-                ref={fileInput}
-                onChange={handleFileChange}
-                className={styles.FileInput}
-              /></label>
+                {fileError ? fileError : file ? fileName : 'Оберіть файл'}
+
+                <input
+                  type="file"
+                  accept="image/*"
+                  name="file"
+                  id="file"
+                  ref={fileInput}
+                  onChange={handleFileChange}
+                  className={styles.FileInput}
+                />
+              </label>
             </div>
           </div>
           <div className={styles.ButtonsBlock}>
@@ -114,7 +122,7 @@ function AddPresent({ close }) {
               type="submit"
               label={'Зберегти'}
               orange={true}
-              disabled={!presentTitle || childName === 'Оберіть дитину'}
+              disabled={!presentTitle || childId === 'Оберіть дитину'}
             />
           </div>
         </form>

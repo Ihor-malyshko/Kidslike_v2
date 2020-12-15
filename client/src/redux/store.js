@@ -14,7 +14,9 @@ import childrenReducer from '../redux/children/childrenReducer';
 import habbitReducer from '../redux/habbit/habbitReducer';
 import taskReducer from '../redux/tasks/taskReducer';
 
+
 import storage from 'redux-persist/lib/storage';
+import { userGifts } from './gifts/giftReducer';
 
 const authPersistConfig = {
   key: 'auth',
@@ -34,6 +36,7 @@ export const store = configureStore({
     children: childrenReducer,
     habbits: habbitReducer,
     tasks: taskReducer,
+    gifts: userGifts,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: {

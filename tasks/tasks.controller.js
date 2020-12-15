@@ -6,9 +6,10 @@ exports.createTask = async (req, res, next) => {
 };
 
 exports.getTasks = async (req, res, next) => {
-  const { childrenId } = req.user;
+  const { childId } = req.user;
   const usersTasks = await TaskModel.find({
-    childId: childrenId.map((el) => el),
+    
+    childId: childId.map((el) => el),
   });
   return res.status(200).send(usersTasks);
 };

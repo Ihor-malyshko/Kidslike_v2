@@ -19,6 +19,10 @@ const getAllHabitsRequest = createAction('habbit/getAllHabitsRequest');
 const getAllHabitsSuccess = createAction('habbit/getAllHabitsSuccess');
 const getAllHabitsError = createAction('habbit/getAllHabitsError');
 
+const checkHabbitRequest = createAction('habbit/checkHabbitRequest');
+const checkHabbitSuccess = createAction('habbit/checkHabbitSuccess');
+const checkHabbitError = createAction('habbit/checkHabbitError');
+
 export default {
     createHabbitRequest,
     createHabbitSuccess,
@@ -32,4 +36,7 @@ export default {
     getAllHabitsRequest,
     getAllHabitsSuccess,
     getAllHabitsError,
+    checkHabbitRequest,
+    checkHabbitSuccess,
+    checkHabbitError,
 }

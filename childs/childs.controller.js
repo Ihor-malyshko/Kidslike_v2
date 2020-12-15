@@ -17,7 +17,7 @@ exports.getChildren = async (req, res, next) => {
   const { childId } = req.user;
   const children = await ChildModel.find({ _id: childId.map((el) => el) });
   // todo не будет работать [] = true
-  if (!children) {
+  if (!children.length) {
     throw new NotFound("You don't have a child yet.");
   }
   return res.status(200).send(children);
