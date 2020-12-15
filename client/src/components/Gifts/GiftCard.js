@@ -29,6 +29,7 @@ export default function GiftCard({ logo = defaultLogo, img = defaultImage }) {
                             alt="default logo"
                         />
                     </div>
+                        <MoreButton type={'child'} />
                     <h2 className={styles.giftName}>Name Gift</h2>
                     <div className={styles.buttonPricePosition}>
                         <div className={styles.starPrice}>

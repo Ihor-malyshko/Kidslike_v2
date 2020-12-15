@@ -6,6 +6,7 @@ import habitOperations from '../../../redux/habbit/habbitOperations';
 import comingSoon from '../EditChild/coming_soon.gif'
     
 import styles from './EditChild.module.css';
+import ChangeChildren from '../../modals/changeChildren/ChangeChildren';
 
 export default function EditChild({ modalType, handleClick, msg, width, height, top, habitData}) {
     const [showModal, setShowModal] = useState(false);
@@ -35,9 +36,7 @@ export default function EditChild({ modalType, handleClick, msg, width, height, 
               </div>
           </div>
         </div>
-          {/* {modalType === 'habit' && showModal && <ChangeHabbit data={habitData} close={() => { close(); handleClick() }} />}
-        {modalType === 'task' && showModal && <ChangeTask close={() => { close(); handleClick() }} />} */}
-        {/* {modalType === 'gift' && showModal && <ChangeGift close={close} />} */}
+          {modalType === 'child' && showModal && <ChangeChildren close={() => { close(); handleClick() }} />}
       </>
     )
 }

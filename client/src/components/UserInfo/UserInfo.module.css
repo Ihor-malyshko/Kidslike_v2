@@ -19,7 +19,10 @@
   margin-right: 308px;
   position: relative;
 }
-
+.userInfoContainer:hover .bubbleWrap {
+  visibility: visible;
+  cursor: pointer;
+}
 .userAvatar {
   border-radius: 50%;
   background-color: #fff;
@@ -28,6 +31,7 @@
 }
 
 .bubbleWrap {
+  visibility: hidden;
   position: absolute;
   top: 45px;
   right: 130px;

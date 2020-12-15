@@ -5,6 +5,7 @@ import ChangeTask from '../../modals/changeTask/ChangeTask';
 import habitOperations from '../../../redux/habbit/habbitOperations';
     
 import styles from './BubbleComponent.module.css';
+import ChangeChildren from '../../modals/changeChildren/ChangeChildren';
 
 export default function BubbleComponent({ modalType, handleClick, msg, width, height, top, habitData}) {
     const [showModal, setShowModal] = useState(false);
@@ -30,7 +31,8 @@ export default function BubbleComponent({ modalType, handleClick, msg, width, he
                 </div>
             </div>
                 {modalType === 'habit' && showModal && <ChangeHabbit data={habitData} close={() => { close(); handleClick() }} />}
-            {modalType === 'task' && showModal && <ChangeTask close={() => { close(); handleClick() }} />}
+                {modalType === 'task' && showModal && <ChangeTask close={() => { close(); handleClick() }} />}
+                {modalType === 'child' && showModal && <ChangeChildren close={() => { close(); handleClick() }} />}
             {/* {modalType === 'gift' && showModal && <ChangeGift close={close} />} */}
         </>
     )
