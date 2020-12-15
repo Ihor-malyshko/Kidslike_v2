@@ -1,23 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import ChangeHabbit from '../../modals/changeHabbit/ChangeHabbit';
-import ChangeTask from '../../modals/changeTask/ChangeTask';
-import habitOperations from '../../../redux/habbit/habbitOperations';
-import comingSoon from '../EditChild/coming_soon.gif'
+import comingSoon from '../../../img/editChild/coming_soon_goIT.gif'
     
 import styles from './EditChild.module.css';
 import ChangeChildren from '../../modals/changeChildren/ChangeChildren';
 
-export default function EditChild({ modalType, handleClick, msg, width, height, top, habitData}) {
+export default function EditChild({ modalType, handleClick, msg, width, height, top}) {
     const [showModal, setShowModal] = useState(false);
     const close = () => {
         setShowModal(!showModal);
     };
-
-    const dispatch = useDispatch();
-    const deleteHabit = (id) => {
-        dispatch(habitOperations.deleteHabit(id))
-    }
 
     return (
       msg ? <div style = {{width:width,height:height,top:top}}
@@ -29,10 +20,11 @@ export default function EditChild({ modalType, handleClick, msg, width, height, 
               <button className={styles.optionButton} onClick={() => close()}>Профіль</button>
               <button className={styles.optionButton} onClick={() => close()}>Статистика</button>             
                 <img
-                  className={styles.comingSoon}
+                  className={styles.comingSoon_png}
                   src={comingSoon}
                   alt="coming soon gif"
-                /> В розробці
+                /> 
+                <span className={styles.text_bubble} >В розробці</span> 
               </div>
           </div>
         </div>

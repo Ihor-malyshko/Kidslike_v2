@@ -43,7 +43,8 @@ export default function LeftSideBar({ logo = defaultLogo, family: Family }) {
           {children.map((el, i) => {
             return (
               <div key={i} className={styles.leftSideBarCard}>
-                <MoreButton type={'child'} />
+                <div className={styles.moreButton_wraper} >{ <MoreButton type={'child'} />}</div>
+                
                 <div className={styles.childTitle}>
                   <img
                     className={styles.leftSideBarAvatar}
