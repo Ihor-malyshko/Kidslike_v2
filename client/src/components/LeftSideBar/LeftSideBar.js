@@ -96,7 +96,7 @@ export default function LeftSideBar({
                     className={styles.arrowText}
                     onClick={familyRenderAnotherLinks}
                   >
-                    До виконаних задач
+                    До завершених задач
                     <img src={arrow} alt="arrow" className={styles.arrow} />
                   </NavLink>
                 </li>

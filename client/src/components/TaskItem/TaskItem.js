@@ -46,7 +46,7 @@ function enumerate(num, dec) {
           <div className={styles.taskTime}>
             <p className={styles.text}>Час на виконання:</p>
             <p className={styles.days}>{daysToComplete}      
-              {enumerate(daysToComplete, [' день', ' дня', ' дней'])}
+              {enumerate(daysToComplete, [' день', ' дня', ' днів'])}
             </p>
           </div>
         ) : (
